@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Future of Space Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --off-white: #f4f7ff;
+  --light: #e8eeff;
+  --cyan: #00b8d9;
+  --cyan-light: #e0f7fc;
+  --cyan-mid: #5cd1e8;
+  --dark: #0d1b2a;
+  --navy: #1a2f4a;
+  --text: #1e2d3d;
+  --dim: #5a7a95;
+  --border: #d0e4f0;
+  --card: #ffffff;
+  --shadow: 0 4px 24px rgba(0,100,180,0.09);
+  --shadow-hover: 0 12px 40px rgba(0,100,180,0.16);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--off-white);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: var(--cyan);
+  letter-spacing: 2px;
+}
+.nav-links { display:flex; gap:28px; list-style:none; }
+.nav-links a {
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--cyan); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 30px 60px;
+  background: linear-gradient(160deg, #e8f4ff 0%, #f8fbff 50%, #e0f7fc 100%);
+  position: relative;
+  overflow: hidden;
+}
+/* subtle planet circles in bg */
+#hero::before {
+  content:'';
+  position:absolute;
+  width:600px; height:600px;
+  border-radius:50%;
+  border: 1px solid rgba(0,184,217,0.12);
+  top:-150px; right:-150px;
+  pointer-events:none;
+}
+#hero::after {
+  content:'';
+  position:absolute;
+  width:400px; height:400px;
+  border-radius:50%;
+  border: 1px solid rgba(0,184,217,0.1);
+  bottom:-100px; left:-100px;
+  pointer-events:none;
+}
+.hero-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  background: var(--cyan-light);
+  border: 1px solid rgba(0,184,217,0.3);
+  border-radius: 30px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+#hero h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+#hero h1 .hl { color: var(--cyan); }
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--dim);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 42px;
+  animation: fadeUp 0.8s ease 0.6s both;
+}
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.8s ease 0.8s both;
+}
+.btn {
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: all .25s;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-primary { background: var(--cyan); color: #fff; }
+.btn-primary:hover { background: #0099b8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,184,217,0.35); }
+.btn-outline { background: #fff; border: 1.5px solid var(--cyan); color: var(--cyan); }
+.btn-outline:hover { background: var(--cyan-light); transform: translateY(-2px); }
+
+/* SCROLL DOTS */
+.scroll-indicator {
+  position: absolute;
+  bottom: 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--dim); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  animation: bob 2s ease-in-out infinite;
+}
+.scroll-indicator .arrow {
+  width: 20px; height: 20px;
+  border-right: 2px solid var(--cyan);
+  border-bottom: 2px solid var(--cyan);
+  transform: rotate(45deg);
+}
+
+/* SECTIONS */
+.section { padding: 80px 30px; max-width: 1080px; margin: 0 auto; }
+.alt-bg { background: var(--white); padding: 80px 30px; }
+.alt-bg .section { padding: 0; }
+
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.section-desc {
+  color: var(--dim);
+  font-size: 1rem;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 44px;
+}
+
+/* TOPICS */
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+.topic-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 26px 22px;
+  transition: all .3s;
+  cursor: default;
+}
+.topic-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+.topic-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.7rem;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+.topic-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.topic-card p { font-size: 0.87rem; color: var(--dim); line-height: 1.65; }
+.topic-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--cyan-light);
+  color: var(--cyan);
+}
+
+/* VIDEOS */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+.video-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all .3s;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--cyan); }
+.video-thumb {
+  position: relative;
+  padding-bottom: 56.25%; height: 0;
+  background: #0d1b2a;
+  overflow: hidden;
+}
+.video-thumb-img {
+  position: absolute; top:0; left:0;
+  width:100%; height:100%;
+  object-fit: cover; opacity: 0.85;
+  transition: opacity .3s;
+}
+.video-card:hover .video-thumb-img { opacity: 1; }
+.video-play-btn {
+  position: absolute;
+  top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  width: 52px; height: 52px;
+  background: rgba(0,184,217,0.92);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .25s, background .25s;
+}
+.video-card:hover .video-play-btn { transform: translate(-50%,-50%) scale(1.1); background: var(--cyan); }
+.video-play-btn svg { width:20px; height:20px; fill:#fff; margin-left:3px; }
+.video-yt-badge {
+  position: absolute; bottom:10px; right:10px;
+  background: #ff0000; color:#fff;
+  font-size: 0.65rem; font-weight:700; letter-spacing:1px;
+  padding: 3px 8px; border-radius:4px;
+}
+.video-info { padding: 16px 18px 20px; }
+.video-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+.video-info p { font-size: 0.82rem; color: var(--dim); line-height: 1.55; }
+.video-tag {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.68rem; font-weight: 600;
+  background: #fff3e0;
+  color: #e65100;
+}
+.video-tag.hw { background: #e8f5e9; color: #2e7d32; }
+
+/* GAMES */
+#games { background: var(--off-white); }
+.games-tabs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.tab-btn {
+  padding: 9px 20px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 30px;
+  color: var(--dim);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all .25s;
+}
+.tab-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.tab-btn.active { background: var(--cyan); border-color: var(--cyan); color: #fff; }
+.game-panel { display:none; }
+.game-panel.active { display:block; }
+
+/* QUIZ */
+.quiz-box {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 38px 40px;
+  max-width: 680px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
+.quiz-progress { display:flex; gap:6px; margin-bottom:28px; }
+.quiz-dot { height:5px; border-radius:3px; flex:1; background:var(--light); transition:background .4s; }
+.quiz-dot.done { background: var(--cyan); }
+.quiz-dot.current { background: #ff8c00; }
+.quiz-q { font-size:1.15rem; font-weight:600; color:var(--dark); line-height:1.55; margin-bottom:26px; min-height:56px; }
+.quiz-options { display:grid; gap:10px; }
+.quiz-opt {
+  padding: 13px 18px;
+  background: var(--off-white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  color: var(--text); font-size: 0.93rem; font-weight: 500;
+  cursor: pointer; text-align: left;
+  transition: all .2s; font-family: 'DM Sans', sans-serif;
+}
+.quiz-opt:hover { border-color: var(--cyan); background: var(--cyan-light); }
+.quiz-opt.correct { border-color: #43a047; background: #e8f5e9; color: #2e7d32; }
+.quiz-opt.wrong { border-color: #e53935; background: #ffebee; color: #c62828; }
+.quiz-feedback {
+  margin-top: 16px; padding: 13px 16px;
+  border-radius: 8px; font-size: 0.88rem; line-height: 1.6;
+  display: none;
+}
+.quiz-feedback.show { display:block; }
+.quiz-feedback.ok { background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; }
+.quiz-feedback.bad { background: #ffebee; border: 1px solid #ef9a9a; color: #c62828; }
+.quiz-bottom { display:flex; justify-content:space-between; align-items:center; margin-top:22px; }
+.quiz-score-label { font-size:0.78rem; color:var(--dim); font-weight:500; }
+.quiz-score-val { font-family:'Orbitron',monospace; font-size:1rem; color:var(--cyan); }
+#quiz-next {
+  padding: 11px 26px;
+  background: var(--cyan); color: #fff;
+  border: none; border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; display: none;
+  transition: all .25s;
+}
+#quiz-next:hover { background: #0099b8; }
+.quiz-end { text-align:center; display:none; padding: 10px 0; }
+.quiz-end-emoji { font-size: 3.5rem; margin-bottom: 14px; display: block; }
+.quiz-end h3 { font-family:'Orbitron',monospace; font-size:1.3rem; color:var(--dark); margin-bottom:8px; }
+.quiz-end p { color:var(--dim); margin-bottom:22px; }
+.quiz-end-score { font-family:'Orbitron',monospace; font-size:3rem; color:var(--cyan); margin-bottom:20px; display:block; }
+#quiz-restart {
+  padding: 13px 30px;
+  background: transparent; border: 1.5px solid var(--cyan);
+  border-radius: 6px; color: var(--cyan);
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+  cursor: pointer; transition: all .25s;
+}
+#quiz-restart:hover { background: var(--cyan-light); }
+
+/* ROCKET BUILDER */
+.rocket-game {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 36px;
+  max-width: 800px; margin: 0 auto; box-shadow: var(--shadow);
+}
+.rocket-game h3 { font-family:'Orbitron',monospace; font-size:1rem; color:var(--dark); margin-bottom:6px; letter-spacing:1px; }
+.rg-sub { color:var(--dim); font-size:0.88rem; margin-bottom:28px; line-height:1.65; }
+.rg-layout { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+.rg-parts h4 { font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:var(--dim); font-weight:600; margin-bottom:12px; }
+.parts-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.part-btn {
+  padding: 11px 8px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--off-white);
+  color: var(--text); font-size: 0.82rem; font-weight: 500;
+  cursor: pointer; text-align: center;
+  transition: all .2s; font-family: 'DM Sans', sans-serif;
+}
+.part-btn:hover { border-color: var(--cyan); background: var(--cyan-light); }
+.part-btn.selected { border-color: var(--cyan); background: var(--cyan-light); color: var(--cyan); font-weight: 700; }
+.part-icon { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+.rg-rocket { text-align:center; }
+.rg-rocket h4 { font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; color:var(--dim); font-weight:600; margin-bottom:14px; }
+.rocket-preview { font-size:3.5rem; margin-bottom:16px; transition:transform .4s; display:block; line-height:1; }
+.rocket-preview.launching { animation: launch 1.5s ease-in forwards; }
+.rg-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
+.rg-stat { background:var(--off-white); border:1.5px solid var(--border); border-radius:8px; padding:10px; }
+.rg-stat-label { font-size:0.68rem; color:var(--dim); font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+.rg-stat-val { font-weight:700; font-size:0.9rem; color:var(--dark); margin-top:3px; }
+#rg-launch {
+  width: 100%; padding: 13px;
+  background: var(--cyan); color: #fff;
+  border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; transition: all .25s;
+}
+#rg-launch:hover { background: #0099b8; transform: scale(1.02); }
+.rg-result { margin-top:14px; padding:13px 15px; border-radius:8px; font-size:0.88rem; line-height:1.55; display:none; }
+.rg-result.show { display:block; }
+.rg-result.success { background:#e8f5e9; border:1px solid #a5d6a7; color:#2e7d32; }
+.rg-result.fail { background:#ffebee; border:1px solid #ef9a9a; color:#c62828; }
+
+/* ASTEROID DODGE */
+.asteroid-game {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 36px;
+  max-width: 680px; margin: 0 auto; text-align: center; box-shadow: var(--shadow);
+}
+.asteroid-game h3 { font-family:'Orbitron',monospace; font-size:1rem; color:var(--dark); margin-bottom:6px; letter-spacing:1px; }
+.ag-sub { color:var(--dim); font-size:0.88rem; margin-bottom:18px; }
+#ag-canvas { border:1.5px solid var(--border); border-radius:10px; background:#000d1a; max-width:100%; cursor:none; }
+.ag-hud { display:flex; justify-content:space-between; margin-top:14px; padding:0 4px; }
+.ag-hud-item { font-family:'Orbitron',monospace; font-size:0.82rem; text-align:center; }
+.ag-hud-label { font-size:0.68rem; color:var(--dim); font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+.ag-hud-val { color:var(--cyan); }
+#ag-start {
+  margin-top:16px;
+  padding: 11px 28px;
+  background: var(--cyan); color:#fff;
+  border:none; border-radius:6px;
+  font-family:'DM Sans',sans-serif; font-size:0.88rem; font-weight:700;
+  cursor:pointer; transition:all .25s;
+}
+#ag-start:hover { background:#0099b8; }
+
+/* MEMORY MATCH */
+.match-game {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 36px;
+  max-width: 780px; margin: 0 auto; box-shadow: var(--shadow);
+}
+.match-game h3 { font-family:'Orbitron',monospace; font-size:1rem; color:var(--dark); margin-bottom:6px; letter-spacing:1px; }
+.mg-sub { color:var(--dim); font-size:0.88rem; margin-bottom:24px; }
+.match-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.match-card {
+  aspect-ratio:1; border-radius:10px;
+  background: var(--cyan-light);
+  border: 2px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.8rem; cursor:pointer;
+  transition:all .25s;
+}
+.match-card:hover { border-color:var(--cyan); transform:scale(1.04); }
+.match-card.flipped, .match-card.matched { background:#fff; border-color:var(--cyan); }
+.match-card.matched { border-color:#43a047; background:#e8f5e9; cursor:default; }
+.match-card .card-front { display:none; }
+.match-card .card-back { display:flex; align-items:center; justify-content:center; width:100%; height:100%; color:var(--dim); }
+.match-card.flipped .card-front, .match-card.matched .card-front { display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+.match-card.flipped .card-back, .match-card.matched .card-back { display:none; }
+.match-hud { display:flex; justify-content:space-between; align-items:center; margin-top:18px; }
+.match-hud-info { text-align:center; }
+.match-hud-label { font-size:0.68rem; color:var(--dim); font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+.match-hud-val { font-family:'Orbitron',monospace; font-size:1rem; color:var(--dark); }
+#match-restart {
+  padding:9px 20px;
+  background:transparent; border:1.5px solid var(--cyan);
+  border-radius:6px; color:var(--cyan);
+  font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:600;
+  cursor:pointer; transition:all .25s;
+}
+#match-restart:hover { background:var(--cyan-light); }
+
+/* FUN FACTS */
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+.fact-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+  transition: all .3s; box-shadow: var(--shadow);
+}
+.fact-card:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.fact-num { font-family:'Orbitron',monospace; font-size:1.5rem; font-weight:900; color:var(--cyan); opacity:0.35; line-height:1; flex-shrink:0; min-width:32px; }
+.fact-text { font-size:0.87rem; color:var(--dim); line-height:1.65; }
+.fact-text strong { color:var(--text); }
+
+/* FOOTER */
+footer {
+  text-align:center; padding:36px 30px;
+  border-top: 1px solid var(--border);
+  color: var(--dim); font-size: 0.82rem;
+}
+footer strong { color: var(--cyan); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes launch { 0%{transform:translateY(0) scale(1);opacity:1} 80%{transform:translateY(-280px) scale(0.5);opacity:0.7} 100%{transform:translateY(-600px) scale(0.1);opacity:0} }
+
+.fade-in { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Space Future</div>
+  <ul class="nav-links">
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#facts">Fun Facts</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Preston Garrity & Will Fideli &nbsp;|&nbsp; May 26, 2026</div>
+  <h1>The Future of<br><span class="hl">Space Travel</span></h1>
+  <p class="hero-sub">Imagine it's the year 3000 and you're living on Mars. How did you get there? That's exactly what we're going to figure out today.</p>
+  <div class="hero-btns">
+    <a href="#games" class="btn btn-primary">Play the Games</a>
+    <a href="#videos" class="btn btn-outline">Watch Videos</a>
+  </div>
+  <div class="scroll-indicator">
+    <div class="arrow"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<div id="topics">
+<div class="section fade-in">
+  <div class="section-label">What We're Covering</div>
+  <div class="section-title">The Big Ideas</div>
+  <p class="section-desc">These are the topics we learned about. Some of them are already happening right now, which is kind of crazy.</p>
+  <div class="topics-grid">
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 01</div>
+      <h3>Reusable Rockets</h3>
+      <p>SpaceX figured out how to land rockets after they launch so they can be used again. Before that, rockets were just thrown away after one trip — like a paper plate but way more expensive.</p>
+      <span class="topic-tag">Challenge: Surviving Reentry Heat</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 02</div>
+      <h3>Rockets and Their Parts</h3>
+      <p>A rocket is more than just a pointy tube. It has a nose cone, fuel tanks, engines, boosters, fins, and a heat shield. Each part has a specific job, and if one fails, the whole mission fails.</p>
+      <span class="topic-tag">Key Part: The Engine</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 03</div>
+      <h3>Mars Colonization</h3>
+      <p>The idea is to actually build homes on Mars and have people live there permanently. The challenges? Freezing cold, no breathable air, and you're months away from anything familiar.</p>
+      <span class="topic-tag">Travel Time: ~7 Months</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 04</div>
+      <h3>Space Tourism</h3>
+      <p>Regular people — not just astronauts — are buying tickets to go to space. Private companies like SpaceX and Blue Origin are making it happen. It's very expensive right now, but that's changing.</p>
+      <span class="topic-tag">Companies: SpaceX, Blue Origin</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 05</div>
+      <h3>Artificial Gravity</h3>
+      <p>In space, there's no gravity, which sounds fun until your bones start disappearing. A spinning space station can create a force that feels like gravity and keeps astronauts healthy on long trips.</p>
+      <span class="topic-tag">Method: Rotation</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 06</div>
+      <h3>Faster Space Travel</h3>
+      <p>Chemical rockets work, but they're slow. New engines — like ion drives and nuclear rockets — could cut the trip to Mars from 7 months to just 45 days. That's a huge deal.</p>
+      <span class="topic-tag">Tech: Ion & Nuclear Engines</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 07</div>
+      <h3>Space Mining</h3>
+      <p>Asteroids are packed with rare metals — more gold and platinum than all of Earth's mines combined. Robots could collect those resources and bring them back, which would be worth trillions.</p>
+      <span class="topic-tag">Target: Asteroids</span>
+    </div>
+    <div class="topic-card">
+      <div class="topic-num">TOPIC 08</div>
+      <h3>AI and Robots in Space</h3>
+      <p>Sending a robot is safer than sending a human. Robots don't need air, food, or sleep. They can explore dangerous places and send back data while humans monitor everything safely from Earth.</p>
+      <span class="topic-tag">Example: Mars Rovers</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- VIDEOS -->
+<div id="videos" class="alt-bg">
+<div class="section fade-in">
+  <div class="section-label">Watch & Learn</div>
+  <div class="section-title">Videos We Picked</div>
+  <p class="section-desc">We found these videos so you can actually see what we're talking about. Some of them are kind of funny too.</p>
+  <div class="video-grid">
+
+    <a class="video-card" href="https://www.youtube.com/watch?v=zqE-ultsWt0" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img class="video-thumb-img" src="https://img.youtube.com/vi/zqE-ultsWt0/hqdefault.jpg" alt="SpaceX landing">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-yt-badge">YouTube</span>
+      </div>
+      <div class="video-info">
+        <h4>How SpaceX Lands Its Rockets</h4>
+        <p>Watching a rocket land itself is still kind of unbelievable even though they do it constantly now. This explains how they pull it off.</p>
+        <span class="video-tag">Really Cool</span>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://www.youtube.com/watch?v=1B6oiLNyKKI" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img class="video-thumb-img" src="https://img.youtube.com/vi/1B6oiLNyKKI/hqdefault.jpg" alt="Life on Mars">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-yt-badge">YouTube</span>
+      </div>
+      <div class="video-info">
+        <h4>What Life on Mars Would Actually Be Like</h4>
+        <p>No Starbucks. No normal air. Extreme cold every single night. This video makes it clear that moving to Mars would not be easy at all.</p>
+        <span class="video-tag">Kinda Funny</span>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://www.youtube.com/watch?v=TR_hP8gMsus" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img class="video-thumb-img" src="https://img.youtube.com/vi/TR_hP8gMsus/hqdefault.jpg" alt="Nuclear rocket">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-yt-badge">YouTube</span>
+      </div>
+      <div class="video-info">
+        <h4>NASA's Nuclear Rocket to Mars</h4>
+        <p>This is the video from your homework! Nuclear propulsion could cut the trip to Mars in half. It's wild that this is actually being built.</p>
+        <span class="video-tag hw">Your Homework Video</span>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://www.youtube.com/watch?v=EAmTvEBb2LU" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img class="video-thumb-img" src="https://img.youtube.com/vi/EAmTvEBb2LU/hqdefault.jpg" alt="Body in space">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-yt-badge">YouTube</span>
+      </div>
+      <div class="video-info">
+        <h4>Weird Things That Happen to Your Body in Space</h4>
+        <p>Your spine grows taller, your face puffs up, and if you cry, the tears just float around your eyeball. Space does some bizarre things to you.</p>
+        <span class="video-tag">Weird Science</span>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://www.youtube.com/watch?v=yqDCsMdZNho" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img class="video-thumb-img" src="https://img.youtube.com/vi/yqDCsMdZNho/hqdefault.jpg" alt="Space tourism">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-yt-badge">YouTube</span>
+      </div>
+      <div class="video-info">
+        <h4>Space Tourism: Who's Going?</h4>
+        <p>Billionaires are already buying seats on rockets. This breaks down what the experience is actually like and where the industry is heading.</p>
+        <span class="video-tag">Eye-Opening</span>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://www.youtube.com/watch?v=6AoKBHjNVNc" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img class="video-thumb-img" src="https://img.youtube.com/vi/6AoKBHjNVNc/hqdefault.jpg" alt="Asteroid mining">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-yt-badge">YouTube</span>
+      </div>
+      <div class="video-info">
+        <h4>The Coming Space Mining Gold Rush</h4>
+        <p>There are asteroids out there worth more than the entire world economy. This video explains why that matters and how we'd actually get to them.</p>
+        <span class="video-tag">Big Money</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+</div>
+
+<!-- GAMES -->
+<div id="games">
+<div class="section fade-in">
+  <div class="section-label">Mini Games</div>
+  <div class="section-title">Test Your Knowledge</div>
+  <p class="section-desc">Four games. Pick one and see how much you actually remember. The winning team might get a prize — just saying.</p>
+
+  <div class="games-tabs">
+    <button class="tab-btn active" onclick="switchTab('quiz',this)">Space Quiz</button>
+    <button class="tab-btn" onclick="switchTab('rocket',this)">Rocket Builder</button>
+    <button class="tab-btn" onclick="switchTab('asteroid',this)">Asteroid Dodge</button>
+    <button class="tab-btn" onclick="switchTab('match',this)">Memory Match</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="game-panel active" id="panel-quiz">
+    <div class="quiz-box">
+      <div class="quiz-progress" id="quiz-dots"></div>
+      <div id="quiz-content">
+        <div class="quiz-q" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <div class="quiz-bottom">
+          <div>
+            <div class="quiz-score-label">Score</div>
+            <div class="quiz-score-val" id="quiz-score-display">0 / 0</div>
+          </div>
+          <button id="quiz-next" onclick="nextQuestion()">Next question</button>
+        </div>
+      </div>
+      <div class="quiz-end" id="quiz-end">
+        <span class="quiz-end-emoji" id="quiz-emoji">🏆</span>
+        <span class="quiz-end-score" id="quiz-final-score"></span>
+        <h3 id="quiz-end-title">Mission Complete!</h3>
+        <p id="quiz-end-msg"></p>
+        <button id="quiz-restart" onclick="startQuiz()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROCKET BUILDER -->
+  <div class="game-panel" id="panel-rocket">
+    <div class="rocket-game">
+      <h3>Rocket Builder Challenge</h3>
+      <p class="rg-sub">Pick one thing from each category to build your rocket, then launch it to Mars. Some combos work really well. Others... not so much. Find out which is which.</p>
+      <div class="rg-layout">
+        <div class="rg-parts">
+          <h4>1. Pick Your Engine</h4>
+          <div class="parts-grid" id="rg-engines">
+            <button class="part-btn" onclick="selectPart('engine','chemical',this)"><span class="part-icon">💥</span>Chemical</button>
+            <button class="part-btn" onclick="selectPart('engine','nuclear',this)"><span class="part-icon">☢️</span>Nuclear</button>
+            <button class="part-btn" onclick="selectPart('engine','ion',this)"><span class="part-icon">⚡</span>Ion Drive</button>
+            <button class="part-btn" onclick="selectPart('engine','solar',this)"><span class="part-icon">☀️</span>Solar Sail</button>
+          </div>
+          <h4 style="margin-top:18px">2. Pick Your Fuel</h4>
+          <div class="parts-grid" id="rg-fuels">
+            <button class="part-btn" onclick="selectPart('fuel','kerosene',this)"><span class="part-icon">🛢️</span>Kerosene</button>
+            <button class="part-btn" onclick="selectPart('fuel','methane',this)"><span class="part-icon">🔵</span>Methane</button>
+            <button class="part-btn" onclick="selectPart('fuel','hydrogen',this)"><span class="part-icon">💧</span>Hydrogen</button>
+            <button class="part-btn" onclick="selectPart('fuel','antimatter',this)"><span class="part-icon">✨</span>Antimatter</button>
+          </div>
+          <h4 style="margin-top:18px">3. Pick Your Hull</h4>
+          <div class="parts-grid" id="rg-hulls">
+            <button class="part-btn" onclick="selectPart('hull','aluminum',this)"><span class="part-icon">🔧</span>Aluminum</button>
+            <button class="part-btn" onclick="selectPart('hull','carbon',this)"><span class="part-icon">🏎️</span>Carbon Fiber</button>
+            <button class="part-btn" onclick="selectPart('hull','titanium',this)"><span class="part-icon">⚙️</span>Titanium</button>
+            <button class="part-btn" onclick="selectPart('hull','cardboard',this)"><span class="part-icon">📦</span>Cardboard</button>
+          </div>
+        </div>
+        <div class="rg-rocket">
+          <h4>Your Rocket</h4>
+          <span class="rocket-preview" id="rocket-emoji">🚀</span>
+          <div class="rg-stats">
+            <div class="rg-stat"><div class="rg-stat-label">Engine</div><div class="rg-stat-val" id="stat-engine">—</div></div>
+            <div class="rg-stat"><div class="rg-stat-label">Fuel</div><div class="rg-stat-val" id="stat-fuel">—</div></div>
+            <div class="rg-stat"><div class="rg-stat-label">Hull</div><div class="rg-stat-val" id="stat-hull">—</div></div>
+            <div class="rg-stat"><div class="rg-stat-label">Status</div><div class="rg-stat-val" id="stat-power">Ready?</div></div>
+          </div>
+          <button id="rg-launch" onclick="launchRocket()">Launch to Mars</button>
+          <div class="rg-result" id="rg-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASTEROID DODGE -->
+  <div class="game-panel" id="panel-asteroid">
+    <div class="asteroid-game">
+      <h3>Asteroid Dodge</h3>
+      <p class="ag-sub">Move your mouse to keep your ship alive. Asteroids get faster as time goes on. How long can you last?</p>
+      <canvas id="ag-canvas" width="580" height="380"></canvas>
+      <div class="ag-hud">
+        <div class="ag-hud-item"><div class="ag-hud-label">Time</div><div class="ag-hud-val" id="ag-time">0s</div></div>
+        <div class="ag-hud-item"><div class="ag-hud-label">Dodged</div><div class="ag-hud-val" id="ag-count">0</div></div>
+        <div class="ag-hud-item"><div class="ag-hud-label">Best</div><div class="ag-hud-val" id="ag-high">0s</div></div>
+      </div>
+      <button id="ag-start" onclick="startAsteroid()">Start Game</button>
+    </div>
+  </div>
+
+  <!-- MEMORY MATCH -->
+  <div class="game-panel" id="panel-match">
+    <div class="match-game">
+      <h3>Space Memory Match</h3>
+      <p class="mg-sub">Flip two cards at a time. Match all 8 pairs to win. Try to do it in as few moves as possible.</p>
+      <div class="match-grid" id="match-grid"></div>
+      <div class="match-hud">
+        <div class="match-hud-info"><div class="match-hud-label">Moves</div><div class="match-hud-val" id="match-moves">0</div></div>
+        <div class="match-hud-info"><div class="match-hud-label">Pairs Found</div><div class="match-hud-val" id="match-pairs">0 / 8</div></div>
+        <button id="match-restart" onclick="initMatch()">New Game</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FUN FACTS -->
+<div id="facts" class="alt-bg">
+<div class="section fade-in">
+  <div class="section-label">Did You Know</div>
+  <div class="section-title">Wild Space Facts</div>
+  <p class="section-desc">Things so weird that you'll probably repeat them at lunch. You're welcome.</p>
+  <div class="facts-grid">
+    <div class="fact-card"><div class="fact-num">01</div><div class="fact-text"><strong>A day on Mars is only 37 minutes longer than a day on Earth.</strong> That's the most normal thing about Mars. Everything else is completely different.</div></div>
+    <div class="fact-card"><div class="fact-num">02</div><div class="fact-text"><strong>SpaceX's Starship is taller than the Statue of Liberty.</strong> And it's designed to land on Mars and fly back to Earth. Both ways.</div></div>
+    <div class="fact-card"><div class="fact-num">03</div><div class="fact-text"><strong>Asteroid 16 Psyche is estimated to be worth $10 quintillion.</strong> That's more than the entire economy of Earth. By a lot. It's mostly made of metal.</div></div>
+    <div class="fact-card"><div class="fact-num">04</div><div class="fact-text"><strong>Astronauts can grow up to 3 inches taller in space</strong> because their spine decompresses without gravity. They shrink back when they come home.</div></div>
+    <div class="fact-card"><div class="fact-num">05</div><div class="fact-text"><strong>A nuclear rocket could get to Mars in 45 days</strong> instead of 7 months. That's the difference between a summer vacation and most of a school year.</div></div>
+    <div class="fact-card"><div class="fact-num">06</div><div class="fact-text"><strong>If you cry in space, the tears don't fall.</strong> They just blob around your eyeball until you wipe them off. Space makes everything awkward.</div></div>
+    <div class="fact-card"><div class="fact-num">07</div><div class="fact-text"><strong>There is zero sound in space.</strong> So every explosion you've ever seen in a Star Wars movie is completely made up. Every single one.</div></div>
+    <div class="fact-card"><div class="fact-num">08</div><div class="fact-text"><strong>A SpaceX Falcon 9 rocket has been launched and landed over 20 times</strong> on the same rocket. It's like a school bus that also flies to space and comes back for pickup.</div></div>
+    <div class="fact-card"><div class="fact-num">09</div><div class="fact-text"><strong>Sunsets on Mars are blue instead of orange.</strong> On Earth, red light scatters. On Mars, it's the opposite — blue light cuts through the dust at sunset.</div></div>
+  </div>
+</div>
+</div>
+
+<footer>
+  Made by <strong>Preston Garrity & Will Fideli</strong> — The Future of Space Travel, May 2026
+</footer>
+
+<script>
+// SCROLL FADE
+const faders = document.querySelectorAll('.fade-in');
+new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08}).observe ? faders.forEach(f=>new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08}).observe(f)) : faders.forEach(f=>f.classList.add('visible'));
+
+// TAB SWITCHER
+function switchTab(name, btn){
+  document.querySelectorAll('.game-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ===== QUIZ =====
+const quizData=[
+  {q:"What does a reusable rocket do that old rockets didn't?",opts:["It goes faster","It lands and gets used again","It runs on solar power","It carries more fuel"],ans:1,exp:"Reusable rockets land after launch so they can fly again. Before SpaceX, every rocket was thrown away after one trip — like spending millions on something you use once."},
+  {q:"How long does it take to get to Mars with today's rockets?",opts:["3 days","2 weeks","About 7 months","5 years"],ans:2,exp:"With chemical rockets, it takes about 7 months to reach Mars. A nuclear rocket could cut that down to around 45 days, which is a massive difference."},
+  {q:"What part of a rocket protects it from extreme heat when coming back to Earth?",opts:["The nose cone","The fuel tank","The heat shield","The booster"],ans:2,exp:"The heat shield protects the spacecraft from burning up during reentry. Without it, the extreme friction from the atmosphere would destroy the rocket."},
+  {q:"Why is artificial gravity important on long space missions?",opts:["It keeps food from floating","It makes the trip faster","It prevents muscle and bone loss","It powers the ship"],ans:2,exp:"Without gravity, muscles weaken and bones lose density pretty fast. A spinning space station creates a gravity-like force that keeps astronauts healthy on long missions."},
+  {q:"What fuel can actually be made on Mars for the return trip home?",opts:["Kerosene","Hydrogen","Methane","Diesel"],ans:2,exp:"Methane can be made on Mars using its atmosphere — this is called In-Situ Resource Utilization (ISRU). It means rockets could refuel on Mars instead of carrying all their fuel from Earth."},
+  {q:"What is space mining?",opts:["Mining tunnels under the Moon","Collecting materials from asteroids","Finding oil in orbit","Drilling on Mars for water"],ans:1,exp:"Space mining means sending robots to asteroids to collect rare metals and minerals. Some asteroids have more gold and platinum than all of Earth's mines combined."},
+  {q:"How does a rotating space station create artificial gravity?",opts:["It uses magnets","The spinning pushes people outward like a merry-go-round","It has gravity generators","It moves faster than Earth"],ans:1,exp:"When a station spins, the people inside get pushed outward — this feels like gravity. It's the same physics as when you spin around and feel pulled to the outside."},
+  {q:"What is the nose cone on a rocket for?",opts:["Holds fuel","Protects the top of the rocket","Controls steering","Houses the crew"],ans:1,exp:"The nose cone protects the top of the rocket from air pressure and friction during launch. It's basically the rocket's helmet."},
+  {q:"What advantage do robots have over humans in space?",opts:["They're cheaper to build","They don't need air, food, or sleep","They're smarter","They move faster"],ans:1,exp:"Robots don't need air, food, water, or sleep. They can work continuously in dangerous environments and send data back while humans stay safely on Earth."},
+  {q:"Which company is most known for landing and reusing rockets?",opts:["NASA","Blue Origin","SpaceX","Boeing"],ans:2,exp:"SpaceX has been landing and reusing Falcon 9 rockets since 2015. Some rockets have flown over 20 missions on the same vehicle, which cuts costs dramatically."}
+];
+
+let qIdx=0, score=0, answered=false;
+
+function startQuiz(){
+  qIdx=0; score=0; answered=false;
+  document.getElementById('quiz-content').style.display='block';
+  document.getElementById('quiz-end').style.display='none';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered=false;
+  const q=quizData[qIdx];
+  let dots='';
+  quizData.forEach((_,i)=>{
+    let cls='quiz-dot'+(i<qIdx?' done':i===qIdx?' current':'');
+    dots+=`<div class="${cls}"></div>`;
+  });
+  document.getElementById('quiz-dots').innerHTML=dots;
+  document.getElementById('quiz-question').textContent=`${qIdx+1}. ${q.q}`;
+  document.getElementById('quiz-options').innerHTML=q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i})">${o}</button>`).join('');
+  document.getElementById('quiz-feedback').className='quiz-feedback';
+  document.getElementById('quiz-feedback').textContent='';
+  document.getElementById('quiz-next').style.display='none';
+  document.getElementById('quiz-score-display').textContent=`${score} / ${qIdx}`;
+}
+
+function answerQuiz(idx){
+  if(answered)return;
+  answered=true;
+  const q=quizData[qIdx];
+  document.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);
+  document.querySelectorAll('.quiz-opt')[idx].classList.add(idx===q.ans?'correct':'wrong');
+  if(idx!==q.ans) document.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');
+  if(idx===q.ans) score++;
+  const fb=document.getElementById('quiz-feedback');
+  fb.className='quiz-feedback show '+(idx===q.ans?'ok':'bad');
+  fb.textContent=(idx===q.ans?'Correct! ':'Not quite — ')+q.exp;
+  document.getElementById('quiz-score-display').textContent=`${score} / ${qIdx+1}`;
+  document.getElementById('quiz-next').style.display='block';
+}
+
+function nextQuestion(){
+  qIdx++;
+  if(qIdx>=quizData.length) showQuizEnd();
+  else renderQuestion();
+}
+
+function showQuizEnd(){
+  document.getElementById('quiz-content').style.display='none';
+  document.getElementById('quiz-end').style.display='block';
+  const pct=score/quizData.length;
+  const e=pct>=0.9?['🏆','Astronaut Certified','NASA called. They want to hire you. No seriously.']:
+           pct>=0.7?['🚀','Mission Successful','Good job — you clearly paid attention during class.']:
+           pct>=0.5?['🌕','Halfway There','Not bad, but maybe rewatch a couple videos and try again.']:
+                    ['😅','Houston, We Have a Problem','That is okay. Space is hard. Try again!'];
+  document.getElementById('quiz-emoji').textContent=e[0];
+  document.getElementById('quiz-final-score').textContent=`${score}/${quizData.length}`;
+  document.getElementById('quiz-end-title').textContent=e[1];
+  document.getElementById('quiz-end-msg').textContent=e[2];
+}
+startQuiz();
+
+// ===== ROCKET BUILDER =====
+let rParts={engine:null,fuel:null,hull:null};
+function selectPart(type,id,btn){
+  rParts[type]=id;
+  const groups={engine:'rg-engines',fuel:'rg-fuels',hull:'rg-hulls'};
+  document.querySelectorAll('#'+groups[type]+' .part-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const labels={chemical:'Chemical',nuclear:'Nuclear',ion:'Ion Drive',solar:'Solar Sail',kerosene:'Kerosene',methane:'Methane',hydrogen:'Hydrogen',antimatter:'Antimatter',aluminum:'Aluminum',carbon:'Carbon Fiber',titanium:'Titanium',cardboard:'Cardboard'};
+  document.getElementById('stat-'+type).textContent=labels[id]||id;
+  if(type==='engine'){
+    const emojis={chemical:'🚀',nuclear:'⚛️',ion:'🛸',solar:'🌞'};
+    document.getElementById('rocket-emoji').textContent=emojis[id]||'🚀';
+  }
+  const all=rParts.engine&&rParts.fuel&&rParts.hull;
+  document.getElementById('stat-power').textContent=all?'Ready to launch':'Pick all 3';
+  document.getElementById('rg-result').className='rg-result';
+}
+
+function launchRocket(){
+  if(!rParts.engine||!rParts.fuel||!rParts.hull){
+    const r=document.getElementById('rg-result');
+    r.className='rg-result show fail';
+    r.textContent='You need to pick an engine, fuel, AND hull before you launch. A rocket with missing parts is just a really expensive paperweight.';
+    return;
+  }
+  const e=rParts.engine,f=rParts.fuel,h=rParts.hull;
+  const rocket=document.getElementById('rocket-emoji');
+  rocket.classList.add('launching');
+  setTimeout(()=>{
+    rocket.classList.remove('launching');
+    const r=document.getElementById('rg-result');
+    if(h==='cardboard'){r.className='rg-result show fail';r.textContent='The cardboard hull caught fire approximately 3 seconds after launch. We appreciate the creativity, but that was never going to work.';}
+    else if(e==='ion'&&f==='hydrogen'&&h==='carbon'){r.className='rg-result show success';r.textContent='Perfect build. Efficient ion engine, clean hydrogen fuel, lightweight carbon fiber hull. Textbook mission to Mars. NASA wants your resume.';}
+    else if(f==='antimatter'&&e==='nuclear'){r.className='rg-result show success';r.textContent='You somehow reached Mars in 3 days, discovered something interesting, and made it back in time for dinner. That is an insane build.';}
+    else if(e==='chemical'&&f==='kerosene'){r.className='rg-result show fail';r.textContent='You made it to Mars... in 8 months. The chemical + kerosene combo is the slowest option. It works, but there are much better choices. Try a nuclear engine.';}
+    else if(e==='solar'&&f==='antimatter'){r.className='rg-result show fail';r.textContent='A solar sail does not use fuel — it runs on light pressure from the Sun. Antimatter does nothing here. These two do not go together at all.';}
+    else if(e==='nuclear'){r.className='rg-result show success';r.textContent='Nuclear power engaged. Trip time: about 45 days. Way faster than a chemical rocket. And if you chose methane, you can actually make more fuel on Mars for the trip home.';}
+    else{r.className='rg-result show success';r.textContent='You made it to Mars. Not the most optimized setup, but it worked. Try different combinations to find the best build.';}
+  },1800);
+}
+
+// ===== ASTEROID DODGE =====
+(function(){
+  const canvas=document.getElementById('ag-canvas');
+  const ctx=canvas.getContext('2d');
+  let ship={x:290,y:310},asteroids=[],running=false,startTime,elapsed=0,highScore=0,dodged=0;
+
+  canvas.addEventListener('mousemove',e=>{
+    if(!running)return;
+    const rect=canvas.getBoundingClientRect();
+    ship.x=Math.max(16,Math.min(canvas.width-16,(e.clientX-rect.left)*(canvas.width/rect.width)));
+    ship.y=Math.max(16,Math.min(canvas.height-16,(e.clientY-rect.top)*(canvas.height/rect.height)));
+  });
+  canvas.addEventListener('touchmove',e=>{
+    if(!running)return;
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const t=e.touches[0];
+    ship.x=Math.max(16,Math.min(canvas.width-16,(t.clientX-rect.left)*(canvas.width/rect.width)));
+    ship.y=Math.max(16,Math.min(canvas.height-16,(t.clientY-rect.top)*(canvas.height/rect.height)));
+  },{passive:false});
+
+  window.startAsteroid=function(){
+    asteroids=[];ship={x:290,y:310};running=true;elapsed=0;dodged=0;
+    startTime=Date.now();
+    document.getElementById('ag-start').textContent='Restart';
+    scheduleSpawn();
+    loop();
+  };
+
+  function scheduleSpawn(){
+    if(!running)return;
+    const side=Math.floor(Math.random()*4);
+    let x,y,vx,vy,speed=2.2+elapsed*0.35;
+    if(side===0){x=Math.random()*canvas.width;y=-20;vx=(Math.random()-0.5)*1.5;vy=speed;}
+    else if(side===1){x=canvas.width+20;y=Math.random()*canvas.height;vx=-speed;vy=(Math.random()-0.5)*1.5;}
+    else if(side===2){x=Math.random()*canvas.width;y=canvas.height+20;vx=(Math.random()-0.5)*1.5;vy=-speed;}
+    else{x=-20;y=Math.random()*canvas.height;vx=speed;vy=(Math.random()-0.5)*1.5;}
+    const r=12+Math.random()*10;
+    asteroids.push({x,y,vx,vy,r,rot:0,rs:(Math.random()-0.5)*0.08});
+    setTimeout(scheduleSpawn,Math.max(380,1300-elapsed*90));
+  }
+
+  function loop(){
+    if(!running){drawGameOver();return;}
+    elapsed=(Date.now()-startTime)/1000;
+    document.getElementById('ag-time').textContent=elapsed.toFixed(1)+'s';
+    document.getElementById('ag-count').textContent=dodged;
+    ctx.fillStyle='#000d1a';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    // simple stars
+    ctx.fillStyle='rgba(180,220,255,0.4)';
+    for(let i=0;i<30;i++){
+      const sx=(i*137.5)%canvas.width,sy=(i*89.3)%canvas.height;
+      ctx.fillRect(sx,sy,1.5,1.5);
+    }
+    // ship
+    ctx.font='28px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('🛸',ship.x,ship.y);
+    // asteroids
+    const alive=[];
+    asteroids.forEach(a=>{
+      a.x+=a.vx;a.y+=a.vy;a.rot+=a.rs;
+      if(a.x<-60||a.x>canvas.width+60||a.y<-60||a.y>canvas.height+60){dodged++;alive.push(a);return;}
+      ctx.save();ctx.translate(a.x,a.y);ctx.rotate(a.rot);
+      ctx.font=`${a.r*2}px serif`;ctx.fillText('☄️',0,0);
+      ctx.restore();
+      const dx=a.x-ship.x,dy=a.y-ship.y;
+      if(Math.sqrt(dx*dx+dy*dy)<a.r+13){running=false;if(elapsed>highScore){highScore=parseFloat(elapsed.toFixed(1));document.getElementById('ag-high').textContent=highScore+'s';}}
+      else alive.push(a);
+    });
+    asteroids=alive;
+    requestAnimationFrame(loop);
+  }
+
+  function drawGameOver(){
+    ctx.fillStyle='rgba(0,13,26,0.85)';ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.textAlign='center';
+    ctx.fillStyle='#ff5252';ctx.font='bold 22px Orbitron,monospace';
+    ctx.fillText('Ship Destroyed',canvas.width/2,canvas.height/2-36);
+    ctx.fillStyle='#00b8d9';ctx.font='15px DM Sans,sans-serif';
+    ctx.fillText(`You survived ${elapsed.toFixed(1)} seconds`,canvas.width/2,canvas.height/2+2);
+    ctx.fillText(`Asteroids dodged: ${dodged}`,canvas.width/2,canvas.height/2+28);
+    ctx.fillStyle='#5a7a95';ctx.font='12px DM Sans,sans-serif';
+    ctx.fillText('Click Restart to play again',canvas.width/2,canvas.height/2+58);
+  }
+})();
+
+// ===== MEMORY MATCH =====
+const matchEmojis=['🚀','🌍','🔭','🛸','☄️','🌕','⭐','🪐'];
+let flipped=[],matched=0,moves=0,matchLocked=false;
+
+function initMatch(){
+  const cards=[...matchEmojis,...matchEmojis];
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];}
+  flipped=[];matched=0;moves=0;matchLocked=false;
+  document.getElementById('match-moves').textContent='0';
+  document.getElementById('match-pairs').textContent='0 / 8';
+  const grid=document.getElementById('match-grid');
+  grid.innerHTML='';
+  cards.forEach((emoji,i)=>{
+    const div=document.createElement('div');
+    div.className='match-card';
+    div.innerHTML=`<div class="card-front">${emoji}</div><div class="card-back">?</div>`;
+    div.dataset.emoji=emoji;
+    div.addEventListener('click',()=>flipCard(div));
+    grid.appendChild(div);
+  });
+}
+
+function flipCard(div){
+  if(matchLocked||div.classList.contains('flipped')||div.classList.contains('matched'))return;
+  div.classList.add('flipped');
+  flipped.push(div);
+  if(flipped.length===2){
+    moves++;
+    document.getElementById('match-moves').textContent=moves;
+    matchLocked=true;
+    const[a,b]=flipped;
+    if(a.dataset.emoji===b.dataset.emoji){
+      a.classList.add('matched');b.classList.add('matched');
+      matched++;
+      document.getElementById('match-pairs').textContent=`${matched} / 8`;
+      flipped=[];matchLocked=false;
+      if(matched===8) setTimeout(()=>alert(`You won in ${moves} moves! ${moves<=16?'Great memory!':moves<=22?'Nice job!':'Keep practicing.'}`),200);
+    } else {
+      setTimeout(()=>{a.classList.remove('flipped');b.classList.remove('flipped');flipped=[];matchLocked=false;},850);
+    }
+  }
+}
+initMatch();
+</script>
+</body>
+</html>
